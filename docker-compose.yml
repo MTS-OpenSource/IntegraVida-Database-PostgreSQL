@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+
+    environment:
+      POSTGRES_USER: postgresql
+      POSTGRES_PASSWORD: 302511
+      POSTGRES_DB: IntegraVida
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./GeneralQuery.sql:/docker-entrypoint-initdb.d/GeneralQuery.sql
+
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
